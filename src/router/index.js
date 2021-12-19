@@ -10,18 +10,12 @@ const routes = [
       {
         path: ':filename',
         name: 'document',
+        // Make lazy-load works for the component. load in this way does't need to import above
         component: () => import('../views/Document.vue'),
+        // Enables props
         props: true
       }
     ]
-  },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   }
 ]
 
