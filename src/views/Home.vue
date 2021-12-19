@@ -21,15 +21,17 @@
                     <p>{{doc.summary}}</p>
                 </div>
             </div>
-
+            <router-view></router-view>
         </el-main>
         <el-aside>
             <div style="margin: 35px 0 0 0">当前共有文档 {{totalDocCount}} 篇</div>
         </el-aside>
+
     </el-container>
 </template>
 
 <script>
+import router from '../router/index'
 import axios from 'axios'
 
 export default {
@@ -56,14 +58,7 @@ export default {
     },
     methods: {
         openDocument: function(title) {
-            let data = { docTitle: title };
-            console.log(data);
-            axios.post('http://10.7.13.192:3000/api/getDocument', JSON.stringify(data)).then(res => {
-                console.log(res.data);
-                this.makeMdHtml(res.data.content).then(res => {
-                    this.showingDoc.content = res;
-                })
-            })
+            router.push({ name: 'document', params: { filename: title } })
         },
         searchDocument: function(keyword) {
             this.pageState = 0;
@@ -73,20 +68,6 @@ export default {
                 this.documentList = res.data;
                 this.pageState = 1;
             })
-        },
-        makeMdHtml: function(mdStr) {
-            return new Promise((resolve, reject) => {
-                try {
-                    let converter = new window.showdown.Converter();
-                    // 在这里的 style 中，即使加上 scoped 仍然会导致样式的全局污染问题。。。用正则给每个标签加上 class 罢
-                    let htmlStr = converter.makeHtml(mdStr) + `<div style="height: 50px"></div><style>.codePre{margin: 0 15px 0 10px; background: #EFEFEF; padding: 15px 15px 15px 15px; border-radius: 8px;} .header1{font-size: 28px} </style>`;
-                    htmlStr = htmlStr.replace(/<pre>/g, "<pre class='codePre'>");
-                    htmlStr = htmlStr.replace(/<h1\s*\S*">/g, "<h1 class='header1'>");
-                    return resolve(htmlStr);
-                } catch (e) {
-                    return reject(e);
-                }
-            });
         }
     }
 }
