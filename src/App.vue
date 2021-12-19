@@ -5,8 +5,19 @@
     <router-link to="/about">About</router-link>
   </div>
   -->
+  <Header />
   <router-view/>
 </template>
+
+<script>
+import Header from './components/Header.vue'
+export default {
+  name: 'App',
+  components: {
+    Header
+  }
+}
+</script>
 
 <style>
 #app {
@@ -16,6 +27,15 @@
   color: #2c3e50;
   padding: 0px;
   margin: 0px;
+}
+
+.el-header,
+.el-footer {
+    background-color: #409EFF;
+    color: var(--el-text-color-primary);
+    line-height: 60px;
+    padding: 0px;
+    margin: 0px;
 }
 
 #nav {
