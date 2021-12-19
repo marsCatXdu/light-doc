@@ -19,5 +19,7 @@ module.exports = {
     'no-multi-spaces': 0,
     'prefer-const': 0,
     'quotes': 0,
+    'keyword-spacing': 0,
+    'eqeqeq': 0,
   }
 }
