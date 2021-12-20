@@ -64,7 +64,7 @@ export default {
         openDocument: function() {
             this.drawer = true;
             let data = { docTitle: this.filename };
-            axios.post('http://10.7.13.192:3000/api/getDocument', JSON.stringify(data)).then(res => {
+            axios.post(window.apiEndpoint + '/api/getDocument', JSON.stringify(data)).then(res => {
                 console.log(res.data);
                this.content = res.data.content;
             })

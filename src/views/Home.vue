@@ -49,7 +49,7 @@ export default {
         }
     },
     created() {
-        axios.post('http://10.7.13.192:3000/api/getDocumentList').then(res => {
+        axios.post(window.apiEndpoint + '/api/getDocumentList').then(res => {
             console.log(res.data);
             this.documentList = res.data;
             this.totalDocCount = this.documentList.length;
@@ -63,7 +63,7 @@ export default {
         searchDocument: function(keyword) {
             this.pageState = 0;
             let data = { keyword: keyword };
-            axios.post('http://10.7.13.192:3000/api/searchDocument', JSON.stringify(data)).then(res => {
+            axios.post(window.apiEndpoint + '/api/searchDocument', JSON.stringify(data)).then(res => {
                 console.log(res.data);
                 this.documentList = res.data;
                 this.pageState = 1;
