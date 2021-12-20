@@ -7,7 +7,7 @@
         @closed="handleClose"
     >
         <VueShowdown
-            class="drawerScroll"
+            class="markdown-body"
             :markdown='content'
         />
     </el-drawer>
@@ -16,6 +16,7 @@
 <script>
 import router from '../router/index'
 
+import 'github-markdown-css'
 import { ref } from 'vue'
 import axios from 'axios'
 
@@ -73,6 +74,17 @@ export default {
 </script>
 
 <style scoped>
+/*markdown style: https://www.npmjs.com/package/github-markdown-css */
+.markdown-body {
+    overflow-y: auto;
+    padding: 0 100px 0 100px;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 80px;
+}
 .drawerScroll {
     overflow-y: auto;
     padding: 0 100px 0 100px;
