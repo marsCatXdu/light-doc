@@ -21,5 +21,6 @@ module.exports = {
     'quotes': 0,
     'keyword-spacing': 0,
     'eqeqeq': 0,
+    'space-before-function-paren': 0
   }
 }
